@@ -29,8 +29,10 @@
     "sass-loader": "^6.0.6",
     "vee-validate": "^2.0.6",
     "vue-loader": "^13.0.5",
+    "vue-native-websocket": "^2.0.6",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.4.4",
+    "vuex": "^3.0.1",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
   }

@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: 'app',
+  name: 'math',
   data () {
     return {
       toCalc: [

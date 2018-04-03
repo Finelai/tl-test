@@ -7,69 +7,42 @@
         <span>{{ comment.body }}</span>
         <button @click="deleteComment(comment.id)">Удалить</button>
       </div>
+      <div>
+        <hr>
+        <button @click="deleteAllcomments">Удалить все</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
+import VueNativeSock from 'vue-native-websocket';
+import store from '../store';
+Vue.use(VueNativeSock, 'ws://echo.websocket.org/', { store: store });
+
 export default {
-  name: 'app',
-  data () {
-    return {
-      comments: [
-        {
-          id: `0${Math.floor(Math.random() * 10) + 1}`,
-          body: 'Тестовый коммент 1',
-        },
-        {
-          id: `1${Math.floor(Math.random() * 10) + 1}`,
-          body: 'Это шедевр',
-        },
-        {
-          id: `2${Math.floor(Math.random() * 10) + 1}`,
-          body: 'Это прекрасно',
-        },
-        {
-          id: `3${Math.floor(Math.random() * 10) + 1}`,
-          body: 'Лучшее, что я видел',
-        },
-        {
-          id: `4${Math.floor(Math.random() * 10) + 1}`,
-          body: 'Два чая этому автору',
-        },
-        {
-          id: `5${Math.floor(Math.random() * 10) + 1}`,
-          body: 'Великолепно',
-        },
-        {
-          id: `6${Math.floor(Math.random() * 10) + 1}`,
-          body: 'Мне это нравится',
-        },
-        {
-          id: `7${Math.floor(Math.random() * 10) + 1}`,
-          body: 'Вот это да!',
-        },
-        {
-          id: `8${Math.floor(Math.random() * 10) + 1}`,
-          body: 'У меня нет слов',
-        },
-        {
-          id: `9${Math.floor(Math.random() * 10) + 1}`,
-          body: 'Сильно',
-        },
-      ],
+  name: 'comments',
+  computed: {
+    comments() {
+      return store.getters.getComments;
     }
   },
   methods: {
     deleteComment(num) {
-      console.log(num);
-      for (let n = 0; n < this.comments.length; n++) {
-        console.log(this.comments[n].id);
-        if (this.comments[n].id === num) {
-          this.comments.splice(n, 1);
-          console.log(this.comments);
-        }
-      }
+      this.$socket.send(num);
+    },
+    deleteAllcomments() {
+      this.$socket.send(1);
+      this.$socket.send(2);
+      this.$socket.send(3);
+      this.$socket.send(4);
+      this.$socket.send(5);
+      this.$socket.send(6);
+      this.$socket.send(7);
+      this.$socket.send(8);
+      this.$socket.send(9);
+      this.$socket.send(10);
     },
   },
 }
