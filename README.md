@@ -4,4 +4,4 @@
 
 - vue-cli
 - vue-router
-
+- vee-validate
