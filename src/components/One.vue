@@ -76,12 +76,10 @@ export default {
               // если знака нет, то записываем дробь в прев
               prev1 = val[n].inc1;
               prev2 = val[n].inc2;
-            } else if (math === '+') {
+            } else if (math === '+' || math === '-') {
               // если знак есть, то в зависимости от знака вызываем функцию и передаем в аргументы прев и текущую дробь
               // полученные значения записываем в прев и результат
-              setResult(this.mathPlus(prev1, prev2, val[n].inc1, val[n].inc2));
-            } else if (math === '-') {
-              setResult(this.mathMinus(prev1, prev2, val[n].inc1, val[n].inc2));
+              setResult(this.math(math, prev1, prev2, val[n].inc1, val[n].inc2));
             } else if (math === '*') {
               setResult(this.mathMult(prev1, prev2, val[n].inc1, val[n].inc2));
             } else if (math === '/') {
